@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="cursor" id="cursor"></div>
+<div id="app">
+  <div class="progress" v-if="!hidden">
+    <div class="progress__bar" :style="{ width : `${progressWidth}%` }"></div>
+  </div>
+  <div class="full-screen" :style="{ backgroundImage : `url(${fullScreenImage})` }" v-if="hidden">
+    <div class="full-screen__title">{{fullScreenTitle}}</div>
+    <div class="full-screen__close" @click="closeFullScreen"></div>
+  </div>
+  <main>
+    <section class="gallery" :class="{ 'gallery--hidden' : hidden }" ref="gallery" @scroll="progress">
+      <div class="gallery__wrapper">
+        <figure class="gallery__item" v-for="(img, index) in gallery" @click="openFullScreen(index)"><img :src="img.src"/></figure>
+      </div>
+    </section>
+  </main>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

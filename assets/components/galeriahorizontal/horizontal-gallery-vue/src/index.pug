@@ -1,0 +1,13 @@
+.cursor#cursor
+
+#app
+  .progress(v-if='!hidden')
+    .progress__bar(:style="{ width : `${progressWidth}%` }")
+  .full-screen(:style="{ backgroundImage : `url(${fullScreenImage})` }" v-if='hidden')
+    .full-screen__title {{fullScreenTitle}}
+    .full-screen__close(@click='closeFullScreen')
+  main
+    section.gallery(:class="{ 'gallery--hidden' : hidden }" ref='gallery' @scroll='progress')
+      .gallery__wrapper
+        figure.gallery__item(v-for='(img, index) in gallery' @click='openFullScreen(index)')
+          img(:src='img.src')
